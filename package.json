@@ -9,7 +9,10 @@
     "build": "NODE_ENV=${NODE_ENV:-production} webpack",
     "package": "sam package --template-file template.yaml --s3-bucket $npm_package_name-${STAGE:-dev} --output-template-file template.packaged.yaml",
     "deploy": "sam deploy --template-file template.packaged.yaml --stack-name $npm_package_name-${STAGE:-dev} --capabilities CAPABILITY_IAM --parameter-override Stage=${STAGE:-dev} ProjectName=$npm_package_name --no-fail-on-empty-changeset",
-    "clean": "rm -rf -v dist/*"
+    "clean": "rm -rf -v dist/*",
+    "sam:local": "sam local invoke Hello -e event.json",
+    "sam:serve": "sam local start-api",
+    "curl:request": "./curl-request.sh"
   },
   "repository": {},
   "author": "",

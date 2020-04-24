@@ -1,5 +1,5 @@
 # https://github.com/awslabs/serverless-application-model/blob/develop/versions/2016-10-31.md
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 
 Parameters:
@@ -20,6 +20,12 @@ Resources:
     Properties:
       Handler: hello.default
       CodeUri: ./dist/hello
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: post
 
   ExampleTable:
     TableName: !Sub ${ProjectName}-exampletable-${Stage}
